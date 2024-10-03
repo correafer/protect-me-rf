@@ -1,38 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, {useState} from "react";
+
+import { RotatingLines } from 'react-loader-spinner'
+
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
 
   const handleClick = (button) => {
     if (button === 'A') {
+      setLoading(true);
       fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/sound')
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         console.log('Resposta da API:', data);
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        setLoading(false);
       })
-      .catch((error) => {
+      .catch(async (error) => {
         console.error('Erro na requisição:', error);
       });
       console.log('Botão A clicado');
     }
     if (button === 'B') {
+      setLoading(true);
       fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/soundios')
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         console.log('Resposta da API:', data);
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Erro na requisição:', error);
+        
       });
       console.log('Botão B clicado');
     }
     if (button === 'C') {
+      setLoading(true);
       fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/delete')
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         console.log('Resposta da API:', data);
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        setLoading(false);  
       })
       .catch((error) => {
         console.error('Erro na requisição:', error);
@@ -63,6 +78,18 @@ export default function Home() {
       <button onClick={() => handleClick('D')} className="button  text-black w-12 h-12" style={{position: 'absolute', top: '44.5%', left: '55%', transform: 'translate(-50%, -50%)'}}></button>
     </div>
       </main>
+
+      {loading && <RotatingLines
+  visible={true}
+  height="20"
+  width="20"
+  color="grey"
+  strokeWidth="5"
+  animationDuration="0.75"
+  ariaLabel="rotating-lines-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />}
     </div>
   );
 }
