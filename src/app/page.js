@@ -81,8 +81,8 @@ export default function Home() {
 
       {loading && <RotatingLines
   visible={true}
-  height="20"
-  width="20"
+  height="50"
+  width="50"
   color="grey"
   strokeWidth="5"
   animationDuration="0.75"
