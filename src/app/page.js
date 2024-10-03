@@ -1,11 +1,47 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
 
 export default function Home() {
 
   const handleClick = (button) => {
-    console.log(`Botão ${button} clicado`);
+    if (button === 'A') {
+      fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/sound')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Resposta da API:', data);
+      })
+      .catch((error) => {
+        console.error('Erro na requisição:', error);
+      });
+      console.log('Botão A clicado');
+    }
+    if (button === 'B') {
+      fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/soundios')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Resposta da API:', data);
+      })
+      .catch((error) => {
+        console.error('Erro na requisição:', error);
+      });
+      console.log('Botão B clicado');
+    }
+    if (button === 'C') {
+      fetch('https://coherent-flounder-terribly.ngrok-free.app/api/iot/delete')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Resposta da API:', data);
+      })
+      .catch((error) => {
+        console.error('Erro na requisição:', error);
+      });
+      console.log('Botão C clicado');
+    }
+    if (button === 'D') {
+      console.log('Botão D clicado');
+    }
   };
 
   return (
